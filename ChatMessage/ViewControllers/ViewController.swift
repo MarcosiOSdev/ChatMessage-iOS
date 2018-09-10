@@ -65,9 +65,31 @@ class ViewController: UITableViewController {
         return messages.count
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        let dateString = convertDateInString(messages[section].date)
+//        return dateString
+//    }
+
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let dateString = convertDateInString(messages[section].date)
-        return dateString
+        
+        let label = DataHeaderLabel()
+        label.text = dateString
+        
+        let containerView = UIView()
+        containerView.addSubview(label)
+        
+        label.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
+        label.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        
+        return containerView
+    }
+    
+    //Spacing in TOP
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
     }
     
     fileprivate func convertStringInDate(_ stringDt: String) -> Date {
@@ -83,4 +105,3 @@ class ViewController: UITableViewController {
     }
 
 }
-

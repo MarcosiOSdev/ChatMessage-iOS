@@ -14,6 +14,7 @@ class ChatMessageCell: UITableViewCell {
         let label = UILabel()
         label.text = "When you provider a long string that is actually going to wrap onto the next line and maybe even a third line"
         label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -52,8 +53,6 @@ class ChatMessageCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        print("init--override")
-        
         backgroundColor = .clear
         
         addSubview(contentChat)
@@ -68,7 +67,7 @@ class ChatMessageCell: UITableViewCell {
     fileprivate func setupConstraints() {
         //Making constraints
         let constraints = [
-            messageLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 24),
+            messageLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             messageLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -32),            
             messageLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 250),
             

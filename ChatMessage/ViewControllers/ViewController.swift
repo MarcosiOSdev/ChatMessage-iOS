@@ -30,24 +30,33 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNavigationBar()
+        setupTableView()
+        setupConstraints()
+    }
+    
+    func setupNavigationBar() {
         //Big titles
         navigationItem.title = "Messages"
         navigationController?.navigationBar.prefersLargeTitles = true
-        
+    }
+    
+    func setupTableView() {
         //Register Cell Identifier in TableView
         tableView.register(ChatMessageCell.self, forCellReuseIdentifier: cellIdentifier)
         
         //Remove Separator lines
         tableView.separatorStyle = .none
-        
-        tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
-        
+        tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)        
         tableView.allowsSelection = false
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func setupConstraints() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,13 +73,6 @@ class ViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return messages.count
     }
-    
-    
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        let dateString = convertDateInString(messages[section].date)
-//        return dateString
-//    }
-
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let dateString = convertDateInString(messages[section].date)
